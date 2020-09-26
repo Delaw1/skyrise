@@ -38,8 +38,20 @@ export class AddAttached extends Component {
       zone: "RS4",
       levels: 1,
       description: '',
-
-      amenities: [
+      developer: 'Imani Developments, Inc.',
+      amenities: [ 
+        {name: 'Car wash area', checked: false},
+        {name: 'Children’s play area', checked: false},
+        {name: 'Concerg', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
+        {name: 'Another', checked: false},
       ],
       floors: [
         {
@@ -378,55 +390,35 @@ export class AddAttached extends Component {
         </h2>
         <h4 className="thumb-heading">
           PHOTOS
-          <a href="#" title className="read-more float-right rr">
+          {/* <a href="#" title className="read-more float-right rr">
             Upload photo
-          </a>
+          </a> */}
+          <label style={{ marginBottom: 0 }} htmlFor="upload-button" className="read-more float-right rr">
+                Upload Photo
+            </label>
+              <input
+                type="file"
+                id="upload-button"
+                style={{ display: "none" }}
+                onChange={this.handleImage}
+              />
         </h4>
         <div className="row">
           <div className="col-md-12 mb-4">
             <ul className="tab-list">
-              <li className="mt-3">
-                <img src="images/up1.jpg" className="w-100" alt="" />
-                <a href title className="corner-cross">
-                  <img src="images/black-cross.png" className alt="loading" />
-                </a>
-              </li>
-              <li className="mt-3">
-                <a href title>
-                  <img src="images/up2.jpg" className="w-100" alt="" />
-                </a>
-              </li>
-              <li className="mt-3">
-                <a href title>
-                  <img src="images/up2.jpg" className="w-100" alt="" />
-                </a>
-              </li>
-              <li className="mt-3">
-                <a href title>
-                  <img src="images/up2.jpg" className="w-100" alt="" />
-                </a>
-              </li>
-              <li className="mt-3">
-                <a href title>
-                  <img src="images/up2.jpg" className="w-100" alt="" />
-                </a>
-              </li>
-              <li className="ml-md-0 mt-3">
-                <a href title>
-                  <img src="images/up2.jpg" className="w-100" alt="" />
-                </a>
-              </li>
-              <li className="mt-3">
-                <a href title>
-                  <img src="images/up2.jpg" className="w-100" alt="" />
-                </a>
-              </li>
-              <li className="mt-3">
-                <a href title>
-                  <img src="images/up2.jpg" className="w-100" alt="" />
-                </a>
-              </li>
-            </ul>
+            {images.map((image, i) => {
+                    return <li className={i == 5 ? "ml-md-0 mt-3" : "mt-3"}>
+                      <img src={image.preview ? image.preview : BASEURL + '/images/up2.jpg'} className="w-100" height="140" alt="" />
+                      {image.preview ?
+                        <a href="#" className="corner-cross" onClick={() => this.handleImageDelete(i)}>
+                          <img src={BASEURL + '/images/black-cross.png'} className alt="loading" />
+                        </a>
+                        : ''}
+
+                    </li>
+
+                  })}
+             </ul>
           </div>
           <div className="col-md-12 mt-5 mb-4">
             <h4 className="thumb-heading">
@@ -442,47 +434,43 @@ export class AddAttached extends Component {
             <div className="w-100 input-c">
               <label htmlFor="c-name">Project name
                 <div className="custom-control custom-checkbox mt-2 p-new">
-                  <input type="checkbox" className="custom-control-input" id="customCheckBox2" defaultChecked />
-                  <label className="custom-control-label pt-1 text-dark" htmlFor="customCheckBox2">
-                    Featured project
-                  </label>
+                  <CheckBox id="customCheckBox2" name="Featured project" click={() => this.handleCheck("featured")} check={this.state.featured} labelClass="custom-control-label pt-1 text-dark" />
                 </div>
               </label>
-              <input type="text" id="p-name" className="form-control" name placeholder="name" defaultValue="Chateau Laurier" />
+              <input type="text" id="p-name" className="form-control" name="name" onChange={this.handleChange} placeholder="name" value={this.state.name} />
             </div>
             <div className="input-c">
               <label htmlFor="Address">Address</label>
-              <input type="text" id="Address" className="form-control" name placeholder="Address" defaultValue="1009 Laurier Ave" />
+              <input type="text" id="Address" className="form-control" name='address' onChange={this.handleChange} placeholder="Address" />
             </div>
             <div className="input-c">
               <label htmlFor="City">City</label>
-              <input type="text" id="City" className="form-control" name placeholder="City" defaultValue="Vancouver" />
+              <input type="text" id="City" className="form-control" name='city' onChange={this.handleChange} placeholder="City" />
             </div>
             <div className="input-c">
               <label htmlFor="Province">Province</label>
-              <input type="text" id="Province" className="form-control" name placeholder="Province" defaultValue="BC" />
+              <input type="text" id="Province" className="form-control" name="province" onChange={this.handleChange} placeholder="Province" />
             </div>
             <div className="input-c">
               <label htmlFor="Province">Country</label>
-              <input type="text" id="Country" className="form-control" name placeholder="Canada" defaultValue="Canada" />
+              <input type="text" id="Country" className="form-control" name="country" onChange={this.handleChange} placeholder="Country"/>
             </div>
             <div className="input-c">
               <label htmlFor="Postal">Price</label>
-              <input type="text" id="Postal" className="form-control" name placeholder="Postal code" defaultValue="$528,000" />
+              <input type="text" id="Postal" className="form-control" name="price" onChange={this.handleChange} placeholder="Price" />
             </div>
             <div className="input-sp">
               <label htmlFor="Type">Property type</label>
               <div className="row">
                 <div className=" col-md-6">
                   <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheckBoxcn" />
-                    <label className="custom-control-label pt-1 text-dark" htmlFor="customCheckBoxcn">
-                      Condos
-                    </label>
+                  <CheckBox name="Condos" click={() => this.handleCheck("condo_check")} check={this.state.condo_check}  labelClass="custom-control-label pt-1 text-dark" />
+                    
                   </div>
                 </div>
                 <div className=" col-md-6 pl-md-0">
-                  <input type="text" id="Type" className="form-control" name placeholder="Postal code" defaultValue="32 units" />
+                <input type="text" id="Type" className={this.state.condo_check ? "form-control" : "form-control disabled"} name="condos" onChange={this.handleChange} placeholder="32 units" />
+                  
                 </div>
               </div>
               {/* <input type="text" id="Type" class="form-control" name="" placeholder="Postal code" value="$528,000"> */}
@@ -491,14 +479,13 @@ export class AddAttached extends Component {
               <div className="row">
                 <div className=" col-md-6">
                   <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheckBoxth" defaultChecked />
-                    <label className="custom-control-label pt-1 text-dark" htmlFor="customCheckBoxth">
-                      Townhouse
-                    </label>
+                  <CheckBox name="Townhouse" click={() => this.handleCheck("townhouse_check")} check={this.state.townhouse_check} labelClass="custom-control-label pt-1 text-dark" />
+                    
                   </div>
                 </div>
                 <div className=" col-md-6 pl-md-0">
-                  <input type="text" id="UN" className="form-control" name placeholder="TOWNHOUSE" defaultValue="6 units" />
+                <input type="text" id="UN" className={this.state.townhouse_check ? "form-control" : "form-control disabled"} name='townhouse' onChange={this.handleChange} placeholder="6 units" />
+                  
                 </div>
               </div>
               {/* <input type="text" id="Type" class="form-control" name="" placeholder="Postal code" value="$528,000"> */}
@@ -507,14 +494,12 @@ export class AddAttached extends Component {
               <div className="row">
                 <div className=" col-md-6">
                   <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheckBoxcm" defaultChecked />
-                    <label className="custom-control-label pt-1 text-dark" htmlFor="customCheckBoxcm">
-                      Commercial
-                    </label>
+                  <CheckBox name="Commercial" click={() => this.handleCheck("commercial_check")} check={this.state.commercial_check} labelClass="custom-control-label pt-1 text-dark" />
                   </div>
                 </div>
                 <div className=" col-md-6 pl-md-0">
-                  <input type="text" id="UN" className="form-control" name placeholder="Town House" defaultValue="2 units" />
+                <input type="text" id="UN" className={this.state.commercial_check ? "form-control" : "form-control disabled"} name='commercial' onChange={this.handleChange} placeholder="2 units" />
+                  
                 </div>
               </div>
               {/* <input type="text" id="Type" class="form-control" name="" placeholder="Postal code" value="$528,000"> */}
@@ -526,80 +511,66 @@ export class AddAttached extends Component {
               <label htmlFor="Size">Floor size (SF)</label>
               <div className="row">
                 <div className="col-md-6 p-r-2 ">
-                  <input type="text" className="form-control" id="Size" name placeholder="Floor Size" defaultValue="450 SF" />
+                  <input type="text" className="form-control" id="Size" placeholder="Floor Size" name="floor_size" onChange={this.handleChange} />
                 </div>
                 <div className="col-md-6 p-l-2">
-                  <input type="text" className="form-control" name placeholder="Floor Size" defaultValue="4696 SF" />
+                  <input type="text" className="form-control" placeholder="Floor Size" name="floor_size2" onChange={this.handleChange} />
                 </div>
               </div>
             </div>
             <div className="input-c">
               <label htmlFor="Level">Levels</label>
-              <input type="text" id="Level" className="form-control" name placeholder="Level" defaultValue="40 Levels" />
+              <input type="text" id="Level" className="form-control" name="levels" placeholder="Level" onChange={this.handleChange}/>
             </div>
             <div className="input-c">
               <label htmlFor="fees">Maintenace fees</label>
-              <input type="text" id="fees" className="form-control" name placeholder="fees" defaultValue="$3.25/SF" />
+              <input type="text" id="fees" className="form-control" name="maintenance_fees" onChange={this.handleChange} placeholder="fees"/>
             </div>
             {/* drop down */}
             <div className="input-c">
               <div className="hasJS">
                 <label htmlFor="Zoning">Zoning</label>
-                <input type="text" id="ZONING" className="form-control" name placeholder="fees" defaultValue="RS4" />
+                <input type="text" id="ZONING" className="form-control" name="zone" onChange={this.handleChange} placeholder="zone" value={this.state.zone}/>
               </div>
             </div>
             <div className="input-c">
               <label htmlFor="c-name">Developer</label>
-              <input type="text" id="c-name" className="form-control" name placeholder="name" defaultValue="Imani Developments, Inc." />
+              <input type="text" id="c-name" className="form-control" name="Developer" onChange={this.handleChange} placeholder="developer" value={this.state.developer} />
             </div>
             <div className="input-c">
               <label htmlFor="Architect">Architect</label>
-              <input type="text" id="Architect" className="form-control" name placeholder="Architect" defaultValue="Douglas Barry Simpson" />
+              <input type="text" id="Architect" className="form-control" name="architect" onChange={this.handleChange} placeholder="Architect" />
             </div>
             <div className="input-c">
               <label htmlFor="date">Completion date (YR)</label>
-              <input type="text" id="date" className="form-control" name placeholder="date" defaultValue="2023 estimate" />
+              <input type="text" id="date" className="form-control" name="completion" onChange={this.handleChange} placeholder="date" />
             </div>
-            {/* suvcribe check box */}
-            {/*               <form>
-  <input type="checkbox" id="fruit1" name="fruit-1" value="Apple">
-  <label for="fruit1">Apple</label>
-
-
-</form> */}
           </div>
           <div className="col-md-4 col-lg-4 ">
             <div className="input-c">
               <label htmlFor="website">Project website</label>
-              <input type="text" id=" website" className="form-control" name placeholder="Project website" defaultValue="www.chateaulaurier.com" />
+              <input type="text" id=" website" className="form-control" name="project_website" onChange={this.handleChange} placeholder="Project website" />
             </div>
             <div className="input-c">
               <label htmlFor="Contact">Contact</label>
               <div className="row">
                 <div className="col-md-6 p-r-2">
-                  <input type="text" className="form-control  m-bb" name placeholder="Contact" defaultValue="Aaron" />
+                  <input type="text" className="form-control  m-bb" name="contact_firstname" onChange={this.handleChange} placeholder="Contact" />
                 </div>
                 <div className="col-md-6 p-l-2">
-                  <input type="text" className="form-control" name placeholder="Contact" defaultValue="Garrison" />
+                  <input type="text" className="form-control" name="contact_lastname" onChange={this.handleChange} placeholder="Contact" />
                 </div>
               </div>
             </div>
             <div className="input-c">
               <label htmlFor="Phone">Phone</label>
-              <input type="text" id="Phone" className="form-control" name placeholder="Phone" defaultValue="(604) 659 - 4332" />
+              <input type="text" id="Phone" className="form-control" name="contact_phone" onChange={this.handleChange} placeholder="Phone" />
             </div>
             <div className="input-c">
               <label htmlFor="Email">Email</label>
-              <input type="text" id="Email" className="form-control" name placeholder="Email" defaultValue="arron@gmail.com" />
+              <input type="text" id="Email" className="form-control" name="contact_email" onChange={this.handleChange} placeholder="Email" />
             </div>
-            {/* term and condition checkbox */}
-            {/* suvcribe check box */}
-            {/*               <form>
-  <input type="checkbox" id="fruit1" name="fruit-1" value="Apple">
-  <label for="fruit1">Apple</label>
-
-
-</form> */}
+            
           </div>
         </div>
         {/* LIST END */}
@@ -607,9 +578,16 @@ export class AddAttached extends Component {
           <div className="col-md-12 mb-4 mt-5">
             <h2 className="thumb-heading">
               VIDEOS
-              <a href="#" title className="read-more float-right">
-                Upload videos
-              </a>
+              <label htmlFor="upload-video" className="read-more float-right">
+                    Upload Videos
+                </label>
+
+                <input
+                  type="file"
+                  id="upload-video"
+                  style={{ display: "none" }}
+                  onChange={this.handleVideo}
+                />
             </h2>
           </div>
         </div>
@@ -777,100 +755,36 @@ designed to the world-class level of the most iconic buildings in Downtown Vanco
  */}
           </div>
           <div className="col-md-12 mb-4  form-div">
-            <textarea name className="form-control" defaultValue={""} />
+            <textarea name="description" className="form-control" value={this.state.description} onChange={this.handleChange}/>
           </div>
           <div className="col-md-12 mb-4 mt-5">
             <h2 className="thumb-heading">
               AMENITIES
-              <a href="#" title className="read-more float-right">
+              {/* <a href="#" title className="read-more float-right">
                 Upload feature sheet
                 (PDF)
-              </a>
+              </a> */}
+              <label htmlFor="upload-sheet" className="read-more float-right">
+                      {this.state.sheet.name}
+              </label>
+              <input
+                type="file"
+                id="upload-sheet"
+                style={{ display: "none" }}
+                onChange={this.handleSheet}
+              />
             </h2>
           </div>
         </div>
         <div className="clearfix" />
         <div className="row cb-area">
+        {this.state.amenities.map((child, i) =>
           <div className="col-lg-3 col-md-3 col-xs-12">
             <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox4" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox4">
-                Car wash area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox5" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox5">
-                Children’s play area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox6" />
-              <label className="custom-control-label  text-dark para-sky mb-4" htmlFor="customCheckBox6">
-                Concerg
-              </label>
+              <CheckBox name={child.name} click={() => this.handleAmenities(i)} check={child.checked} labelClass="custom-control-label  text-dark para-sky mb-3" />
             </div>
           </div>
-          <div className="col-lg-3 col-md-3 col-xs-12">
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox24" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox24">
-                Car wash area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox25" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox25">
-                Children’s play area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox26" />
-              <label className="custom-control-label  text-dark para-sky mb-4" htmlFor="customCheckBox26">
-                Concerg
-              </label>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-3 col-xs-12">
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox34" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox34">
-                Car wash area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox35" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox35">
-                Children’s play area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox36" />
-              <label className="custom-control-label  text-dark para-sky mb-4" htmlFor="customCheckBox36">
-                Concerg
-              </label>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-3 col-xs-12">
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox44" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox44">
-                Car wash area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox45" defaultChecked />
-              <label className="custom-control-label  text-dark para-sky mb-3" htmlFor="customCheckBox45">
-                Children’s play area
-              </label>
-            </div>
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheckBox46" />
-              <label className="custom-control-label  text-dark para-sky mb-4" htmlFor="customCheckBox46">
-                Concerg
-              </label>
-            </div>
-          </div>
+        )}
         </div>
       </div>
       <div className="row">
