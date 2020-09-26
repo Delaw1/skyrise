@@ -171,17 +171,12 @@
 		}
 	})();
 
-	menuBtn.on('click', function(){
-		console.log('slide')
-		togglePushy(); 
-	});
 	if(cssTransforms3d){
 		//toggle submenu
 		toggleSubmenu();
 
 		//toggle menu
 		menuBtn.on('click', function(){
-			console.log('slide')
 			togglePushy(); 
 		});
 		//close menu when clicking site overlay
