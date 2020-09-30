@@ -16,5 +16,6 @@ export const routes = {
     GETGS: `${BASEURL}/getGS`,
     SAVEGS: `${BASEURL}/saveGS`,
     UPLOAD: `${BASEURL}/uploadMedia`,
+    UPLOADVIDEO: `${BASEURL}/test`
 
 }

@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Proxima Nova exBl';
-    src: url('fonts/ProximaNova-Black.woff2') format('woff2'),
-        url('fonts/ProximaNova-Black.woff') format('woff');
+    src: url('./fonts/ProximaNova-Black.woff2') format('woff2'),
+        url('./fonts/ProximaNova-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
     font-family: 'Proxima Nova 100';
-    src: url('fonts/ProximaNovaT-Thin.woff2') format('woff2'),
-        url('fonts/ProximaNovaT-Thin.woff') format('woff');
+    src: url('./fonts/ProximaNovaT-Thin.woff2') format('woff2'),
+        url('./fonts/ProximaNovaT-Thin.woff') format('woff');
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -18,8 +18,8 @@
 
 @font-face {
     font-family: 'Proxima Nova  Lit';
-    src: url('fonts/ProximaNovaA-Light.woff2') format('woff2'),
-        url('fonts/ProximaNovaA-Light.woff') format('woff');
+    src: url('./fonts/ProximaNovaA-Light.woff2') format('woff2'),
+        url('./fonts/ProximaNovaA-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -27,8 +27,8 @@
 
 @font-face {
     font-family: 'Proxima Nova Alt Th';
-    src: url('fonts/ProximaNovaA-Thin.woff2') format('woff2'),
-        url('fonts/ProximaNovaA-Thin.woff') format('woff');
+    src: url('./fonts/ProximaNovaA-Thin.woff2') format('woff2'),
+        url('./fonts/ProximaNovaA-Thin.woff') format('woff');
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -36,8 +36,8 @@
 
 @font-face {
     font-family: 'Proxima Nova Alt Rg';
-    src: url('fonts/ProximaNovaA-Bold.woff2') format('woff2'),
-        url('fonts/ProximaNovaA-Bold.woff') format('woff');
+    src: url('./fonts/ProximaNovaA-Bold.woff2') format('woff2'),
+        url('./fonts/ProximaNovaA-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -45,8 +45,8 @@
 
 @font-face {
     font-family: 'Proxima Nova bol';
-    src: url('fonts/ProximaNova-Bold.woff2') format('woff2'),
-        url('fonts/ProximaNova-Bold.woff') format('woff');
+    src: url('./fonts/ProximaNova-Bold.woff2') format('woff2'),
+        url('./fonts/ProximaNova-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -54,8 +54,8 @@
 
 @font-face {
     font-family: 'Proxima Nova Th';
-    src: url('fonts/ProximaNova-Extrabld.woff2') format('woff2'),
-        url('fonts/ProximaNova-Extrabld.woff') format('woff');
+    src: url('./fonts/ProximaNova-Extrabld.woff2') format('woff2'),
+        url('./fonts/ProximaNova-Extrabld.woff') format('woff');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -63,8 +63,8 @@
 
 @font-face {
     font-family: 'Proxima Nova Rg';
-    src: url('fonts/ProximaNova-Regular.woff2') format('woff2'),
-        url('fonts/ProximaNova-Regular.woff') format('woff');
+    src: url('./fonts/ProximaNova-Regular.woff2') format('woff2'),
+        url('./fonts/ProximaNova-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -454,7 +454,7 @@ ul.resp-tabs-list input[type=button] {
 ul.resp-tabs-list input[type=button]:focus{outline:none;}
 
 .location-h {
-    background-image: url(images/map-grey.svg);
+    background-image: url(./images/map-grey.svg);
     width: 20px;
      height: 25px;
     margin: 0 auto 7px;
@@ -462,7 +462,7 @@ ul.resp-tabs-list input[type=button]:focus{outline:none;}
 }
 .location-h:hover,
 .location-h:focus {
-  background-image: url(images/map-black.svg);        
+  background-image: url(./images/map-black.svg);        
 }
 
 img.icon-sz {
@@ -623,15 +623,15 @@ ul.icons-list li:nth-child(2):hover h6 {
 }
 ul.icons-list li:nth-child(2):hover .share-h {
  
-     background: url(images/share-b.svg);
+     background: url(./images/share-b.svg);
 }
 
 ul.icons-list li:nth-child(1):hover .location-h {
  
-     background: url(images/map-black.svg);
+     background: url(./images/map-black.svg);
 }
 .share-h {
-    background: url(images/share-black.svg);
+    background: url(./images/share-black.svg);
 width: 27px;
     height: 25px;
     margin-bottom: 5px;
@@ -640,7 +640,7 @@ width: 27px;
 }
 .share-h:hover {
  
-     background: url(images/share-b.svg);
+     background: url(./images/share-b.svg);
 }
 img.img-fluid.fx-h {
     min-height: 79%;
@@ -2051,15 +2051,15 @@ h4.thumb-heading.mb-1 {
 }
 	footer{padding-top:0px;}
 	.location-h {       margin: 0px auto 6px;
-    background-image: url(images/map-grey-mob.svg); width:16px; height:20px;}
+    background-image: url(./images/map-grey-mob.svg); width:16px; height:20px;}
 	.location-h:hover,
 .location-h:focus {
-    background-image: url(images/map-mob-new.svg) !important;   width:16px; height:20px;      
+    background-image: url(./images/map-mob-new.svg) !important;   width:16px; height:20px;      
 }
-ul.icons-list li:nth-child(1):hover .location-h{ background-image: url(images/map-mob-new.svg) !important;   width:16px; height:20px;      }
-ul.icons-list li:nth-child(2):hover .share-h{background-image: url(images/share-mob-black.svg) !important; width:23px; height:21px;}
-.share-h{ background-image: url(images/share-mob-grey.svg); width:23px; height:21px;      margin: 0px auto 5px;}
-.share-h:hover{ background-image: url(images/share-mob-black.svg) !important; width:23px; height:21px;}
+ul.icons-list li:nth-child(1):hover .location-h{ background-image: url(./images/map-mob-new.svg) !important;   width:16px; height:20px;      }
+ul.icons-list li:nth-child(2):hover .share-h{background-image: url(./images/share-mob-black.svg) !important; width:23px; height:21px;}
+.share-h{ background-image: url(./images/share-mob-grey.svg); width:23px; height:21px;      margin: 0px auto 5px;}
+.share-h:hover{ background-image: url(./images/share-mob-black.svg) !important; width:23px; height:21px;}
 	p.font-s {
     font-size: 16px;}
 	footer span {

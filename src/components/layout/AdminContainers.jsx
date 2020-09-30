@@ -4,8 +4,13 @@ import logo from '../../assest/images/logo.png'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import BACKEND_URL from '../../shared/_helpers/utils';
 import Footer from './Footer'
+import {appendScript} from '../../shared/utils/appendScript'
 
 export class AdminContainers extends Component {
+  componentDidMount () {
+    appendScript("./js/pushy.js")
+    
+}
     render() {
         return (
             <Fragment>
@@ -14,7 +19,7 @@ export class AdminContainers extends Component {
         <nav className="pushy pushy-left" data-focus="#first-link">
           <div className="pushy-content">
             <ul>
-              <li className="pushy-link"><a href="index.html">Home</a></li>
+              <li className="pushy-link"><a href="/">Home</a></li>
               <li className="pushy-submenu">
                 <button>Services</button>
                 <ul>
@@ -339,6 +344,26 @@ export class AdminContainers extends Component {
               </li>
               <li className="pushy-link"><a href="videos.html">Videos</a></li>
               <li className="pushy-link"><a href="contact.html">Contact</a></li>
+              <li className="pushy-submenu">
+                        <button>Projects</button>
+                        <ul>
+                           <li className="pushy-link"><a href="/project-list">Project list</a></li>
+                            <li className="pushy-link"><a href="/add-attached">Add attached project</a></li>
+                            <li className="pushy-link"><a href="/add-detached">Add detached project</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li className="pushy-submenu">
+                        <button> Developers</button>
+                        <ul>
+                             <li className="pushy-link"><a href="/developer-list">Developers list</a></li>
+                            <li className="pushy-link"><a href="/add-developer">Add developer</a></li>
+                           
+                          
+                        </ul>
+                    </li>
+             
+                    <li className="pushy-link"><a href="/admin">Admin</a></li>
             </ul>
           </div>
         </nav>

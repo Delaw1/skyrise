@@ -11,6 +11,8 @@ import history from '../../shared/_helpers/history'
 import axios from 'axios'
 import { routes } from '../../services/url'
 import $ from 'jquery'
+import VideoThumbnail from 'react-video-thumbnail';
+import {appendScript} from '../../shared/utils/appendScript'
 // import OwlCarousel from 'react-owl-carousel';
 // import 'owl.carousel/dist/assets/owl.carousel.css';
 // import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -84,6 +86,7 @@ export class AddAttached extends Component {
         { name: "", blobData: "", raw: "" },
         { name: "", blobData: "", raw: "" },
       ],
+      video: [],
       sheet: {
         name: 'Upload Feature Sheet (pdf)',
         raw: ''
@@ -261,6 +264,22 @@ export class AddAttached extends Component {
     })
   }
 
+  handleVideoNew = (e) => {
+    const media = new FormData()
+    media.append('video', e.target.files[0])
+    axios.post(routes.UPLOADVIDEO, media).then(resp => {
+      console.log(resp)
+      if(resp.data.status == "success") {
+        this.setState(prevState => ({
+          video: [...prevState.video, resp.data.path]
+        }))
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+    document.getElementById("upload-video").value = "";
+  }
+
   handleDropdown = (e, name) => {
     this.setState({
       [name]: e.target.innerText
@@ -308,6 +327,15 @@ export class AddAttached extends Component {
     document.getElementById("upload-button").value = "";
   }
 
+  handleVideoDelete = (index) => {
+    console.log(index)
+    let newImages = this.state.video.filter((image, i) => i !== index)
+    this.setState({
+      video: newImages
+    })
+    // document.getElementById("upload-button").value = "";
+  }
+
   handleVideo = (e) => {
     let reader = new FileReader();
     let file = e.target.files[0]
@@ -351,6 +379,10 @@ export class AddAttached extends Component {
     })
   }
 
+  handle = () => {
+    console.log(this.state)
+  }
+
   componentDidUpdate() {
     if (this.props.addProject.status == serviceConstant.CREATE_PROJECT_SUCCESS) {
       alert('Project successfully added')
@@ -385,7 +417,7 @@ export class AddAttached extends Component {
       {/* body section */}
       <div className="w-100">
         {/* slider emd */}
-        <h2 className="page-h">
+        <h2 className="page-h" onClick={this.handle}>
           PROJECT DATA (ATTACHED)
         </h2>
         <h4 className="thumb-heading">
@@ -586,29 +618,40 @@ export class AddAttached extends Component {
                   type="file"
                   id="upload-video"
                   style={{ display: "none" }}
-                  onChange={this.handleVideo}
+                  onChange={this.handleVideoNew}
                 />
             </h2>
           </div>
         </div>
         <div className="row m-area">
-          <div className="col-md-3 p-b-15">
-            <a href="#" data-toggle="modal" data-target="#exampleModal">
-            </a><div className="box1"><a href="#" data-toggle="modal" data-target="#exampleModal">
+          
+            {this.state.video.map((data, i) => 
+                <div className="col-md-3 p-b-15">
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+            </a>
+              <div className="box1"><a href="#" data-toggle="modal" data-target="#exampleModal">
               </a><a href title className="corner-cross">
-                <img src="images/black-cross.png" className alt="loading" />
+                <img src="images/black-cross.png" className alt="loading" onClick={() => this.handleVideoDelete(i)}></img> />
               </a>
-              <img src="images/v1.jpg" className="img-fluid fx-h" />
-            </div>
-            <p className="page-para mt-2 ex-40">
+              <VideoThumbnail
+                videoUrl={BASEURL + data}
+                thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+                snapshotAtTime={2}
+                />
+                </div>
+                <p className="page-para mt-2 ex-40">
               Semi-Waterfront Luxury Living
             </p>
           </div>
+            )}
+            
+            
+            
           <div className="col-md-3 p-b-15">
             <a href="#" data-toggle="modal" data-target="#exampleModa2">
             </a><div className="box1"><a href="#" data-toggle="modal" data-target="#exampleModa2">
               </a><a href title className="corner-cross">
-                <img src="images/black-cross.png" className alt="loading" />
+                <img src="images/black-cross.png" className alt="loading..." />
               </a>
               <img src="images/v2.jpg" className="img-fluid fx-h" />
             </div>

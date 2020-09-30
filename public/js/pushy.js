@@ -23,12 +23,15 @@
 	//check if menu-btn-class data attribute exists
 	if( typeof pushy.data('menu-btn-class') !== 'undefined' ){
 		var menuBtnClass = pushy.data('menu-btn-class'); //take user defined menu button CSS class
+		console.log(menuBtnClass)
 	}else{
 		var menuBtnClass = '.menu-btn'; //set default menu button CSS class
+		console.log(menuBtnClass)
 	}
 
 	//css classes to toggle the menu
 	var menuBtn = $(menuBtnClass + ', .pushy-link');
+	
 
 	//css class to focus when menu is closed w/ esc key
 	var menuBtnFocus = $(menuBtnClass);
@@ -174,10 +177,11 @@
 	if(cssTransforms3d){
 		//toggle submenu
 		toggleSubmenu();
-
+		console.log('yes')
 		//toggle menu
 		menuBtn.on('click', function(){
 			togglePushy(); 
+			console.log('yes yes')
 		});
 		//close menu when clicking site overlay
 		siteOverlay.on('click', function(){

@@ -26,7 +26,7 @@
 
 		$(document).click(function(e) {
 			if($(e.target).parents(".customSelect").length === 0) {
-				// console.log(self)
+				// console.log('cliecked')
 				self.close();
 			}
 		});

@@ -26,9 +26,11 @@
 
 		$(document).click(function(e) {
 			if($(e.target).parents(".customSelect").lenght === 0) {
+				console.log('cliecked')
 				self.close();
 			}
 		});
+		
 
 		this.add = function(sb) {
 			sbs.push(sb);
