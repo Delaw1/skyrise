@@ -1,3 +1,4 @@
+import jQuery from 'jquery';
 // Easy Responsive Tabs Plugin
 (function ($) {
     $.fn.extend({
@@ -63,7 +64,7 @@
                 //Assigning the 'aria-controls' to Tab items
                 var count = 0,
                     $tabContent;
-                $respTabs.find('.resp-tab-item').each(function () {
+                $respTabs.find('.resp-tab-item').each(function () { 
                     $tabItem = $(this);
                     $tabItem.attr('aria-controls', 'tab_item-' + (count));
                     $tabItem.attr('role', 'tab');

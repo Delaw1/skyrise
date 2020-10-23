@@ -53,7 +53,7 @@ export const createDeveloperCall = (state = {}, action) => {
     }
 }
 
-export const getProjects = (state = { dats: []}, action) => {
+export const getProjects = (state = { data: []}, action) => {
     switch(action.type) {
         case serviceConstant.GET_PROJECTS_PENDING: 
             return {
@@ -67,8 +67,8 @@ export const getProjects = (state = { dats: []}, action) => {
             };
         case serviceConstant.GET_PROJECTS_FAILURE:
             return {
-                status: serviceConstant.GET_PROJECTS_FAILURE,
-                data: action.error.response
+                ...state,
+                status: serviceConstant.GET_PROJECTS_FAILURE
             };
         case serviceConstant.DELETE_PROJECT_PENDING:
             return {
@@ -142,7 +142,8 @@ export const getDeveloper = (state = {data:[]}, action) => {
 
 const initialState = {
     data: {
-        amenities: []
+        amenities: [],
+        videos: []
     }
 }
 export const getGS = (state = initialState, action) => {
@@ -182,12 +183,22 @@ export const getGS = (state = initialState, action) => {
         }
         case serviceConstant.GET_GS_FAILURE:
             return {
-                status: serviceConstant.GET_GS_FAILURE,
-                data: action.error.response
+                ...state,
+                status: serviceConstant.GET_GS_FAILURE
             };
         case serviceConstant.GET_GS_CLEAR:
             return {
                 status: serviceConstant.GET_GS_CLEAR
+            };
+        default: return { ...state }
+    }
+}
+
+export const filterProperty = (state = {name: 'Commercial', data: [], featured: []}, action) => {
+    switch(action.type) {
+        case 'FILTERPROPERTY_SUCCESS':
+            return {
+                ...action.payload
             };
         default: return { ...state }
     }

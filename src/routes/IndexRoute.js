@@ -8,6 +8,7 @@ import DeveloperData from "../components/dashboard/DeveloperData"
 import ProjectList from "../components/dashboard/ProjectList"
 import Admin from "../components/dashboard/Admin"
 import Home from "../components/dashboard/Home"
+import Property from "../components/dashboard/Property"
 
 export class IndexRoute extends Component {
     render() { 
@@ -21,6 +22,7 @@ export class IndexRoute extends Component {
                 <Route path="/add-attached" component={AddAttached}  />
                 <Route path="/add-detached" component={AddDetached}  />
                 <Route path="/developer-data" component={DeveloperData}  />
+                <Route path="/property" component={Property}  />
             </Fragment>
         )
     }

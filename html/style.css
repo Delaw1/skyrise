@@ -76,6 +76,24 @@
 	label.black a {
     color: #000;
 }
+.add-data {
+    width: 200px;
+}
+input.btn.btn-block.orng-btn.mt-5 {
+    margin-top: 80px !important;
+}
+.upload-input input[type=text] {
+    min-height: 48px;
+    outline: none;
+}
+.right-40 {
+    width: 40%;
+    float: right;
+}
+.left-60 {
+    float: left;
+    width: 60%;
+}
 .custom-control.custom-checkbox.black {
     height: 48px;
 }
@@ -1438,7 +1456,7 @@ a.crsz img {
     margin-top: -4px;
 }
 a.read-more.float-right.rr {
-    margin-right: 11px;
+    margin-right: 0px;
 }
 .row.m-area {
     padding: 4px;
@@ -1796,16 +1814,21 @@ margin-left: -193px;
 /* tabs css end */
 
 /* tab data css  */
-
+ul.tab-list {
+    margin: -8px;
+}
 .tab-list{ margin:0; padding: 0; }
 .tab-list li{ list-style: none;
 margin-top:  15px;
-position: relative;
+position: relative;float: left; padding:8px;
 font-size: 15px;
- display:  inline-block; width: 19%;
-margin-left: 10px;
-}
+ display:  inline-block; width:20%;
 
+}
+.tab-list li a.corner-cross {
+    top: 8px;
+    right: 8px;
+}
 .tab-list li:first-child{ margin-left: 0px; }
 
  .tab-list li span{  font-family: 'Proxima Nova bol'; margin-top: 8px;
@@ -1963,6 +1986,15 @@ table.prj-list tr th {
 }
 
 @media screen and (max-width: 767px) {
+	.add-data{width:100%;}
+	.left-60 {
+    float: left;
+    width: 100%;
+}
+.right-40 {
+    width: 100%;
+    float: right;
+}
 	ul.plan-area li:nth-child(4n) {
     padding-right: 15px;
 }
@@ -2280,7 +2312,7 @@ img.img-fluid.w-100.fx-hs {
 }
   .nav-btn.nav-ct-next,.nav-btn.nav-ct-pre{top:13%;}
 
-  .tab-list li{width: 18%;}
+  .tab-list li{width: 20%;}
 
 .phone, .mail {
     margin-left: 10px;
@@ -2363,7 +2395,7 @@ min-height: 72%;
   .page-para{font-size: 14px;}
     .nav-btn.nav-ct-next,.nav-btn.nav-ct-pre{top:11%;}
 
-     .tab-list li{width: 18%;}
+     .tab-list li{width: 20%;}
   .resp-tabs-list li{font-size: 10px;}
 
   #horizontalTab2 .resp-tabs-list li {

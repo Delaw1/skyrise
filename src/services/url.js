@@ -1,4 +1,4 @@
-// const BASEURL = "https://skyline.haseebahmad.co/api"
+// export const BASEURL = "https://skyriseprojects.com/api"
 export const BASEURL = "http://localhost:8000"
 
 export const routes = {

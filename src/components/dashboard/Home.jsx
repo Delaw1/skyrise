@@ -8,7 +8,8 @@ import { apiCallAction } from "../../redux/actions/apicall.action";
 import { serviceConstant } from '../../redux/constants/apicall.constant'
 import ProjectTable from './ProjectTable'
 import debounce from 'lodash.debounce';
-import {appendScript} from '../../shared/utils/appendScript'
+import { appendScript } from '../../shared/utils/appendScript'
+import { BASEURL } from '../../services/url';
 
 export class Home extends Component {
   constructor(props) {
@@ -23,11 +24,19 @@ export class Home extends Component {
 
   componentDidMount() {
     appendScript("https://unpkg.com/swiper/swiper-bundle.min.js")
+    appendScript("./js/swiperjs.js")
+    this.props.getGS()
+    this.props.getProjects()
   }
   componentDidUpdate = () => {
   }
 
   render() {
+
+    const condo = this.props.projects.data.filter((project) => project.featured === 1 && project.type_id === 1 && project.condos !== null)
+    const detached = this.props.projects.data.filter((project) => project.featured === 1 && project.type_id === 2)
+    const townhouse = this.props.projects.data.filter((project) => project.featured === 1 && project.type_id === 1 && project.townhouse !== null)
+
 
     return (
       <AdminContainer>
@@ -65,7 +74,7 @@ export class Home extends Component {
                       services and sales expertise to real estate builders
                       and developers.
                   </p>
-                    <a href title className="read-more m-40"> Read more...</a>
+                    <a href="true" title className="read-more m-40"> Read more...</a>
                   </div>
                 </div>
                 <div className="col-md-4 p-b-15">
@@ -103,100 +112,40 @@ export class Home extends Component {
                   </h2>
                   {/* model code */}
                   {/* Modal */}
-                  <div className="modal fade p-0" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                    <div className="modal-dialog modal-dialog-centered" role="document">
-                      <div className="modal-content">
-                        <div className="modal-body">
-                          <iframe width="100%" height={500} src="https://www.youtube.com/embed/eIVh30Swokc" frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                  {this.props.gs.data.videos.map((data, i) =>
+                    <Fragment>
+                      <div key={i} className="modal fade p-0" id={"exampleModal" + i} tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                        <div className="modal-dialog modal-dialog-centered" role="document">
+                          <div className="modal-content">
+                            <div className="modal-body">
+                              <iframe width="100%" height={500} src={"https://www.youtube.com/embed/" + data.id} frameBorder={0} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </Fragment>
+
+                  )}
                   {/* from here model */}
                   <div className="swiper-container mt-bt">
                     <div className="swiper-wrapper">
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#" data-toggle="modal" data-target="#exampleModal">
-                            <img src="images/v1.jpg" className="img-responsive " />
-                          </a>
-                          <p className="page-para mt-2">
-                            Semi-Waterfront Luxury Living
-                        </p>
-                        </div>
-                      </div>
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#">
-                            <img src="images/v2.jpg" className="img-responsive " />
-                          </a>
-                          <p className="page-para mt-2">
-                            The Perfect Place to Call Home
-                        </p>
-                        </div>
-                      </div>
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#">
-                            <img src="images/v3.jpg" className="img-responsive " />
-                          </a>
-                          <p className="page-para mt-2">
-                            Luxury Mountain Home
-                        </p>
-                        </div>
-                      </div>
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#">
-                            <img src="images/v4.jpg" className="img-responsive" />
-                          </a>
-                          <p className="page-para mt-2">
-                            European Style Meets West Coast...
-                        </p>
-                        </div>
-                      </div>
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#" data-toggle="modal" data-target="#exampleModal">
-                            <img src="images/v1.jpg" className="img-responsive " />
-                          </a>
-                          <p className="page-para mt-2">
-                            Semi-Waterfront Luxury Living
-                        </p>
-                        </div>
-                      </div>
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#">
-                            <img src="images/v2.jpg" className="img-responsive " />
-                          </a>
-                          <p className="page-para mt-2">
-                            The Perfect Place to Call Home
-                        </p>
-                        </div>
-                      </div>
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#">
-                            <img src="images/v3.jpg" className="img-responsive " />
-                          </a>
-                          <p className="page-para mt-2">
-                            Luxury Mountain Home
-                        </p>
-                        </div>
-                      </div>
-                      <div className="swiper-slide">
-                        <div className="box-items">
-                          <a href="#">
-                            <img src="images/v4.jpg" className="img-responsive" />
-                          </a>
-                          <p className="page-para mt-2">
-                            European Style Meets West Coast...
-                        </p>
-                        </div>
-                      </div>
+                      {this.props.gs.data.videos.map((data, i) =>
+                        <Fragment>
+                          <div key={i} className="swiper-slide">
+                            <div className="box-items">
+                              <a href="#" data-toggle="modal" data-target={"#exampleModal" + i}>
+                                <img src={"https://img.youtube.com/vi/" + data.id + "/hqdefault.jpg"} className="img-responsive " />
+                              </a>
+                              <p className="page-para mt-2">
+                                {data.title} </p>
+                            </div>
+                          </div>
+                        </Fragment>
+
+                      )}
+
                     </div>
                     {/* Add Arrows */}
                     <div className="swiper-button-next" />
@@ -209,175 +158,67 @@ export class Home extends Component {
                     </h2>
                   </div>
                 </div>
-                <div className="col-md-4 mt-2 p-r-15">
-                  <a href title>
-                    <img src="images/f1.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      Akimbo
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      Burnaby <span className="pipe">|</span> From $559,000
-                  </p>
+                {condo.slice(0, 6).map((project, i) =>
+                  <div className="col-md-4 mt-2 p-r-15">
+                    <a href title>
+                      <img src={BASEURL + "/uploads/" + project.images[0]} className="img-fluid w-100 fx-hs" alt="" />
+                    </a><div className="p-bx"><a href title>
+                      <h4 className="thumb-heading mb-1">
+                        {project.address}
+                      </h4>
+                    </a>
+                      <p className="page-para m-40">
+                        {project.city} <span className="pipe">|</span> From ${project.price}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-4 mt-2 p-b-15">
-                  <a href title>
-                    <img src="images/f2.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      The City Of Lougheed
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      Richmond <span className="pipe">|</span> From $492,500
-                  </p>
-                  </div>
-                </div>
-                <div className="col-md-4 mt-2 p-l-15">
-                  <a href title>
-                    <img src="images/f3.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      Forte
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      Vancouver <span className="pipe">|</span> From $529,000
-                  </p>
-                  </div>
-                </div>
-                <div className="col-md-4 mt-4 p-r-15">
-                  <a href title>
-                    <img src="images/f4.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      Concord Brentwood Phase 2
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      Vanc <span className="pipe">|</span> From $529,000
-                  </p>
-                  </div>
-                </div>
-                <div className="col-md-4 mt-4 p-b-15">
-                  <a href title>
-                    <img src="images/f5.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      Concord Brentwood Phase 2
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      Vanc <span className="pipe">|</span> From $529,000
-                  </p>
-                  </div>
-                </div>
-                <div className="col-md-4 mt-4 p-l-15">
-                  <a href title>
-                    <img src="images/f6.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      CF Richmond C
-                      entre
-                    </h4>
-                  </a>
-                    <p className="page-para">
-                      Richmond <span className="pipe">|</span> From $498,000
-                  </p>
-                  </div>
-                </div>
+                )}
+
+
                 <div className="col-md-12 mt-md-5">
                   <h2 className="page-heading">
                     FEATURED DETACHED HOMES
                   <a href="#" title className="read-more float-right d-none">View all</a>
                   </h2>
                 </div>
-                <div className="col-md-4 mt-2 p-r-15">
-                  <a href title>
-                    <img src="images/fd1.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      1133 Palmerston Avenue
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      West Vancouver <span className="pipe">|</span> $4,998,000
-                  </p>
+
+                {detached.slice(0, 3).map((project) =>
+                  <div className="col-md-4 mt-2 p-r-15">
+                    <a>
+                      <img src={BASEURL + "/uploads/" + project.images[0]} className="img-fluid w-100 fx-hs" alt="" />
+                    </a><div className="p-bx"><a>
+                      <h4 className="thumb-heading mb-1">
+                        {project.address}
+                      </h4>
+                    </a>
+                      <p className="page-para m-40">
+                        {project.city} <span className="pipe">|</span> From ${project.price}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-4 mt-2 p-b-15">
-                  <a href title>
-                    <img src="images/fd2.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      2626 Bellevue Avenue
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      White Rock <span className="pipe">|</span> $12,800,000
-                  </p>
-                  </div>
-                </div>
-                <div className="col-md-4 mt-2 p-l-15">
-                  <a href title>
-                    <img src="images/fd3.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      1098 Wolfe Avenue
-                    </h4>
-                  </a>
-                    <p className="page-para">
-                      Vancouver <span className="pipe">|</span> $9,998,000
-                  </p>
-                  </div>
-                </div>
+                )}
                 <div className="col-md-12 mt-md-5">
                   <h2 className="page-heading">
                     FEATURED TOWNHOUSE PROJECTS
                   <a href="#" title className="read-more float-right d-none">View all</a>
                   </h2>
                 </div>
-                <div className="col-md-4 mt-2 p-r-15">
-                  <a href title>
-                    <img src="images/ft1.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      1133 Palmerston Avenue
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      West Vancouver <span className="pipe">|</span> From $698,000
-                  </p>
+                {townhouse.slice(0, 3).map((project, k, i) =>
+                  <div className="col-md-4 mt-2 p-r-15">
+                    <a>
+                      <img src={BASEURL + "/uploads/" + project.images[0]} className="img-fluid w-100 fx-hs" alt="" />
+                    </a><div className="p-bx"><a>
+                      <h4 className="thumb-heading mb-1">
+                        {project.address}
+                      </h4>
+                    </a>
+                      <p className="page-para m-40">
+                        {project.city} <span className="pipe">|</span> From ${project.price}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-4 mt-2 p-b-15">
-                  <a href title>
-                    <img src="images/ft2.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      2626 Bellevue Avenue
-                    </h4>
-                  </a>
-                    <p className="page-para m-40">
-                      White Rock <span className="pipe">|</span> From $690,000
-                  </p>
-                  </div>
-                </div>
-                <div className="col-md-4 mt-2 p-l-15">
-                  <a href title>
-                    <img src="images/ft3.jpg" className="img-fluid w-100 fx-hs" alt="" />
-                  </a><div className="p-bx"><a href title>
-                    <h4 className="thumb-heading mb-1">
-                      1098 Wolfe Avenue
-                    </h4>
-                  </a>
-                    <p className="page-para ">
-                      Vancouver <span className="pipe">|</span> From $729,000
-                  </p>
-                  </div>
-                </div>
+
+                )}
               </div>
             </div>
           </div>
@@ -521,11 +362,16 @@ export class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     addProject: state.addProject,
-    projects: state.projects
+    projects: state.projects,
+    gs: state.gs
   }
 }
 
 export default connect(mapStateToProps, {
+  saveGS: apiCallAction.saveGS,
+  getGS: apiCallAction.getGS,
+  updateGS: apiCallAction.updateGS,
+  clearSave: () => { return { type: serviceConstant.SAVE_GS_CLEAR } },
   getProjects: apiCallAction.getProjects,
   delProject: apiCallAction.delProject
 })(Home)

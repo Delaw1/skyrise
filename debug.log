@@ -1,3 +1,6 @@
 [0925/104533.811:ERROR:registration_protocol_win.cc(103)] CreateFile: The system cannot find the file specified. (0x2)
 [0925/104535.020:ERROR:registration_protocol_win.cc(103)] CreateFile: The system cannot find the file specified. (0x2)
 [0925/155923.981:ERROR:process_info.cc(359)] UncheckedAllocate
+[1006/200738.789:ERROR:process_info.cc(359)] UncheckedAllocate
+[1022/225021.798:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1023/002629.143:ERROR:process_info.cc(359)] UncheckedAllocate

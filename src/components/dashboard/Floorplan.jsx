@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import BACKEND_URL from '../../shared/_helpers/utils'
+// import {routes.BASEURL} from '../../shared/_helpers/utils'
+import { routes } from '../../services/url'
 
 export class Floorplan extends Component {
     
@@ -12,7 +13,7 @@ export class Floorplan extends Component {
                     Upload
                         </a>
                 <a href title>
-                    <img src={BACKEND_URL + '/images/up3.jpg'} className="w-100" alt="" />
+                    <img src={routes.BASEURL + '/images/up3.jpg'} className="w-100" alt="" />
                 </a>
                 <div className="row mt-3">
                     <div className="col-6 pt-2">

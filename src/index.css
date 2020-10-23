@@ -69,12 +69,59 @@
   font-style: normal;
   font-display: swap;
 }
+.input-a input[type=text] {
+  width: 250px;
+  height: 40px; padding-left:15px; outline:none;
+  margin-bottom: 20px;
+  float: left;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
   .swiper-container {
     width: 100%;
 
   }
 label.black a {
   color: #000;
+}
+.add-data {
+  width: 200px;
+}
+input.btn.btn-block.orng-btn.mt-5 {
+  margin-top: 80px !important;
+}
+.upload-input input[type=text] {
+  min-height: 48px;
+  outline: none;
+}
+a.delete-icon {
+  color: #fff;
+  background: #bb0505;
+  padding: 10px 9px 11px;
+  display: inline-block;
+  font-size: 13px;
+  border-radius: 5px;
+  width: 75px;
+  text-align: center;
+}
+a.edit {
+  color: #fff;
+  background: #2b2b2b;
+  padding: 10px 9px 11px;
+  display: inline-block;
+  font-size: 13px;
+  border-radius: 5px;
+  width: 75px;
+  text-align: center;
+  margin-left: 5px;
+}
+.right-40 {
+  width: 40%;
+  float: right;
+}
+.left-60 {
+  float: left;
+  width: 60%;
 }
 .custom-control.custom-checkbox.black {
   height: 48px;
@@ -244,9 +291,7 @@ top: 33%;
   color: #000;
 }
 body.pushy-open-left .tab-list li {
-
-  width: 18%;
-
+  width: 20%;
 }
 label.orange.text-right {
   display: block;
@@ -1438,7 +1483,7 @@ a.crsz img {
   margin-top: -4px;
 }
 a.read-more.float-right.rr {
-  margin-right: 11px;
+  margin-right: 0px;
 }
 .row.m-area {
   padding: 4px;
@@ -1796,16 +1841,21 @@ margin-left: -193px;
 /* tabs css end */
 
 /* tab data css  */
-
+ul.tab-list {
+  margin: -8px;
+}
 .tab-list{ margin:0; padding: 0; }
 .tab-list li{ list-style: none;
 margin-top:  15px;
-position: relative;
+position: relative;float: left; padding:8px;
 font-size: 15px;
-display:  inline-block; width: 19%;
-margin-left: 10px;
-}
+display:  inline-block; width:20%;
 
+}
+.tab-list li a.corner-cross {
+  top: 8px;
+  right: 8px;
+}
 .tab-list li:first-child{ margin-left: 0px; }
 
 .tab-list li span{  font-family: 'Proxima Nova bol'; margin-top: 8px;
@@ -1935,7 +1985,7 @@ table.prj-list tr th {
   width: 100%;
   border: 1px solid #969fa8;
   background: #fff;
- 
+ overflow: hidden;
   text-align: center;
 }
 
@@ -1963,6 +2013,15 @@ table.prj-list tr th {
 }
 
 @media screen and (max-width: 767px) {
+.add-data{width:100%;}
+.left-60 {
+  float: left;
+  width: 100%;
+}
+.right-40 {
+  width: 100%;
+  float: right;
+}
 ul.plan-area li:nth-child(4n) {
   padding-right: 15px;
 }
@@ -2280,7 +2339,7 @@ img.img-fluid.w-100.fx-hs {
 }
 .nav-btn.nav-ct-next,.nav-btn.nav-ct-pre{top:13%;}
 
-.tab-list li{width: 18%;}
+.tab-list li{width: 20%;}
 
 .phone, .mail {
   margin-left: 10px;
@@ -2363,7 +2422,7 @@ font-size: 15px;
 .page-para{font-size: 14px;}
   .nav-btn.nav-ct-next,.nav-btn.nav-ct-pre{top:11%;}
 
-   .tab-list li{width: 18%;}
+   .tab-list li{width: 20%;}
 .resp-tabs-list li{font-size: 10px;}
 
 #horizontalTab2 .resp-tabs-list li {
@@ -2395,6 +2454,21 @@ table.dv-data tr .w-25 {
 
 @media (min-width: 320px) and (max-width: 767px)
 {
+  a.edit {
+
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+  .input-a input[type=text] {
+  width: 96%;
+  height: 40px;
+  padding-left: 15px;
+  outline: none;
+  margin-bottom: 10px;
+  float: left;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
   .plan-bx.position-relative img {
   width: 100%;
   height: 100%;
@@ -2642,7 +2716,7 @@ img.img-fluid.w-100.fx-h {
 .header .menu:hover {
 overflow: auto;
 }
-  /* overflow: auto; */
+  overflow: auto;
       .p-l-15 { padding-left: 15px !important;}
   .p-r-15 { padding-right: 15px !important;}
   .p-l-5 { padding-left: 15px !important;}

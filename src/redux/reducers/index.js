@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { createProjectCall, getProjects, createDeveloperCall, getDevelopers, getDeveloper, getGS} from './apicall.reducer'
+import { createProjectCall, getProjects, createDeveloperCall, getDevelopers, getDeveloper, getGS, filterProperty} from './apicall.reducer'
 
 const rootReducer = combineReducers({
     addProject: createProjectCall,
@@ -7,7 +7,8 @@ const rootReducer = combineReducers({
     addDeveloper: createDeveloperCall,
     developers: getDevelopers,
     developer: getDeveloper,
-    gs: getGS
+    gs: getGS,
+    filterProperty
 })
 
 export default rootReducer

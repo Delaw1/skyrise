@@ -99,6 +99,13 @@ const getDeveloper = (developer) => {
     }
 }
 
+const filterProperty = (name, data, featured) => {
+    return {
+        type: 'FILTERPROPERTY_SUCCESS',
+        payload: {name, data, featured}
+    }
+}
+
 
 
 export const apiCallAction = {
@@ -110,5 +117,6 @@ export const apiCallAction = {
     getGS,
     saveGS,
     updateGS,
-    delProject
+    delProject,
+    filterProperty 
 }

@@ -1,52 +1,45 @@
 import React from 'react'
 import BACKEND_URL from '../../shared/_helpers/utils'
 
-function ProjectTable({body, handleDelete}) {
+function ProjectTable({ body, handleDelete }) {
     return (
         <table className="prj-list">
             <thead>
                 <tr>
-                    <th scope="col" className="pl-40">PROJECT NAME</th>
-                    <th scope="col" className="w-25">ADDRESS</th>
-                    <th scope="col">CITY</th>
-                    <th scope="col">DEVELOPER</th>
-                    <th scope="col">CONDO</th>
-                    <th scope="col">TOWN</th>
-                    <th scope="col">COMM</th>
-                    <th scope="col"> </th>
+                    <th width="10%" scope="col" class="pl-40">Project name</th>
+                    <th width="10%" scope="col">Commercial</th>
+                    <th width="10%" scope="col">Condos</th>
+                    <th width="10%" scope="col">Townhouse</th>
+                    <th width="30%" scope="col">Address</th>
+                    <th width="10%" scope="col">City</th>
+                    <th width="20%" scope="col" class="text-right">Developer</th>
                 </tr>
             </thead>
             <tbody>
                 {Array.isArray(body) ?
-                    body.length === 0 ? 'No project' :
-                    body.map((project, i) =>
-                        <tr key={i}>
-                            {project.featured ?
-                                <td scope="row" data-label="PROJECT NAME">
+                    body.length === 0 ? '' :
+                        body.map((project, i) =>
+                            <tr key={i}>
+                                <td data-label="Project Name">
                                     <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id="customCheckBox3" defaultChecked="checked" />
-                                        <label className="custom-control-label pt-1 col-redish" htmlFor="customCheckBox3">
+                                        {project.featured ?
+                                            <input type="checkbox" className="custom-control-input" id="customCheckBox2112" checked /> :
+                                            <input type="checkbox" className="custom-control-input" id="customCheckBox2112" />}
+                                        <input type="checkbox" className="custom-control-input" id="customCheckBox2112" />
+                                        <label className="custom-control-label pt-1 text-dark sm" htmlFor="customCheckBox2112">
                                             {project.name}
                                         </label>
                                     </div>
-                                </td>
-                                :
-                                <td data-label="PROJECT NAME" className="pl-40">{project.name}</td>
-                            }
 
-                            <td data-label="ADDRESS">{project.address}</td>
-                            <td scope="row" data-label="CITY">{project.city}</td>
-                            <td data-label="DEVELOPER">{project.developer.name}</td>
-                            <td data-label="CONDO">{project.condos !== null ? project.condos : '-'}</td>
-                            <td data-label="TOWN">{project.townhouse !== null ? project.townhouse : '-'}</td>
-                            <td data-label="COMM">{project.commercial !== null ? project.commercial : '-'}</td>
-                            <td data-label="Delete" onClick={() => handleDelete(project.id)}>
-                                <a href="#" className="float-right" >
-                                    <img src={BACKEND_URL + "/images/cross.png"} width={10} height={8} alt="" />
-                                </a>
-                            </td>
-                        </tr>
-                    )
+                                </td>
+                                <td data-label="Comemrcial">{project.commercial !== null ? project.commercial : '-'}</td>
+                                <td data-label="Condos">{project.condos !== null ? project.condos : '-'}</td>
+                                <td data-label="Townhouse">{project.townhouse !== null ? project.townhouse : '-'}</td>
+                                <td data-label="Address">{project.address !== null ? project.address : '-'}</td>
+                                <td data-label="City">{project.city !== null ? project.city : '-'}</td>
+                                <td data-label="Developer" class="text-right">{project.developer.name !== null ? project.developer.name : '-'}</td>
+                            </tr>
+                        )
                     : 'Loading'}
             </tbody>
         </table>

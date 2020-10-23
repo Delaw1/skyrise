@@ -8,10 +8,10 @@ export class DeveloperData extends Component {
         const { developer } = this.props
         return (
             <AdminContainer developer={'active'}>
-                <div>
+                <div id="container">
                     <div className="container-fluid">
-                        <div className="w-100 pt-1">
-                            <h2 className="page-heading mt-4">
+                        <div className="w-100">
+                            <h2 className="page-h">
                                 DEVELOPER DATA
                             </h2>
                             <div className="row">
@@ -19,13 +19,13 @@ export class DeveloperData extends Component {
                                     <div className="row">
                                         <div className="col-md-6 pr-md-5">
                                             <div className="input-area pr-md-2">
-                                                <label htmlFor="c-name">Developer name</label>
+                                                <label htmlFor="c-name">Developer's company name</label>
                                                 <input type="text" id="c-name" className="form-control" name placeholder="name" value={developer.data.name} />
                                             </div>
                                         </div>
                                         <div className="col-md-6 pl-md-5">
                                             <div className="input-area pl-md-4">
-                                                <label htmlFor="c-Website">Developer Website</label>
+                                                <label htmlFor="c-Website">Developer website</label>
                                                 <input type="text" id="c-Website" className="form-control" name placeholder="Website" value={developer.data.website} />
                                             </div>
                                         </div>
@@ -53,7 +53,7 @@ export class DeveloperData extends Component {
                                         <div className="col-md-6 pr-md-5">
                                             <div className="input-area pr-md-2">
                                                 <label htmlFor="c-City">City</label>
-                                                <input type="text" id="c-City" className="form-control" name placeholder="City" value={developer.data.city}/>
+                                                <input type="text" id="c-City" className="form-control" name placeholder="City" value={developer.data.city} />
                                             </div>
                                         </div>
                                         <div className="col-md-6 pl-md-5">
@@ -67,6 +67,10 @@ export class DeveloperData extends Component {
                                                 <label htmlFor="c-Province">Province</label>
                                                 <input type="text" id="c-Province" className="form-control" name placeholder="Province" value={developer.data.province} />
                                             </div>
+                                            <div className="input-area pr-md-2">
+                                                <label htmlFor="c-Province">Country</label>
+                                                <input type="text" id="c-Province" className="form-control" name placeholder="Country" value={developer.data.country} />
+                                            </div>
                                         </div>
                                         <div className="col-md-6 pl-md-5">
                                             <div className="input-area pl-md-4">
@@ -76,7 +80,7 @@ export class DeveloperData extends Component {
                                         </div>
                                         <div className="col-md-6 pr-md-5">
                                             <div className="input-area pr-md-2">
-                                                <label htmlFor="Code">Postal Code</label>
+                                                <label htmlFor="Code">Postal code</label>
                                                 <input type="text" id="Code" className="form-control" name placeholder="Code" value={developer.data.postal_code} />
                                             </div>
                                         </div>
@@ -85,48 +89,52 @@ export class DeveloperData extends Component {
                                 </div>
                             </div>
                         </div>
-                        <table className="dv-data mt-5">
+                        <table className="prj-list mt-5">
                             <thead>
                                 <tr>
-                                    <th scope="col" className="pl-40 w-25">PROJECT NAME</th>
-                                    <th scope="col">CONDOS</th>
-                                    <th scope="col">TOWNHOUSE</th>
-                                    <th scope="col">COMMERCIAL</th>
-                                    <th scope="col" className="w-25">ADDRESS</th>
-                                    <th scope="col">CITY</th>
+                                    <th width="15%" scope="col" className="pl-40">Project name</th>
+                                    <th width="10%" scope="col">Commercial</th>
+                                    <th width="10%" scope="col">Condos</th>
+                                    <th width="10%" scope="col">Townhouse</th>
+                                    <th width="10%" scope="col">House</th>
+                                    <th width="20%" scope="col">Address</th>
+                                    <th width="10%" scope="col">City</th>
+                                    <th width="15%" scope="col" className="text-right">Developer</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {developer.data.project.map((child, i) => 
-                                <tr>
-                                    {child.featured ? 
-                                    
-                                    <td data-label="PROJECT NAME">
-                                    <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id="customCheckBox2" defaultChecked="checked" />
-                                        <label className="custom-control-label pt-1" htmlFor="customCheckBox2">
-                                            {child.name}
-                                        </label>
-                                    </div>
-                                </td>
-                                : 
-                                <td data-label="PROJECT NAME" className="pl-40">
-                                    {child.name}
-                                </td>
-                                }
-                                
-                                <td data-label="CONDOS">{child.condos ? child.condos : '-'}</td>
-                                <td data-label="TOWNHOUSE">{child.townhouse ? child.townhouse : '-'}</td>
-                                <td data-label="COMMERCIAL">{child.commercial ? child.commercial : '-'}</td>
-                                <td data-label="ADDRESS">{child.address}</td>
-                                <td data-label="CITY">{child.city}</td>
-                            </tr>
-                            )}
+                                {developer.data.project.map((child, i) =>
+                                    <tr>
+                                        <td data-label="Project name">
+                                            <div className="custom-control custom-checkbox">
+                                                {child.featured ?
+                                                    <input type="checkbox" className="custom-control-input" id="customCheckBox29" checked />
+                                                    :
+                                                    <input type="checkbox" className="custom-control-input" id="customCheckBox29" />
+                                                }
+
+                                                <label className="custom-control-label pt-1 text-dark sm" htmlFor="customCheckBox29">
+                                                    {child.name}
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td data-label="Commercial">{child.commercial ? child.commercial : '-'}</td>
+                                        <td data-label="Condos">{child.condos ? child.condos : '-'}</td>
+                                        <td data-label="Townhouse">{child.townhouse ? child.townhouse : '-'}</td>
+                                        <td data-label="House">H1</td>
+                                        <td data-label="Address">{child.address}</td>
+                                        <td data-label="City">{child.city}</td>
+                                        <td data-label="Developer" className="text-right">Belford Property</td>
+                                    </tr>
+                                )}
+
+
                             </tbody>
-                        </table>
+                        </table> 
                     </div>
                     <div className="clearfix" />
                 </div>
+                <div class="f-spc"></div>
             </AdminContainer>
         )
     }
